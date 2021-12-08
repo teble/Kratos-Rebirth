@@ -63,7 +63,7 @@ posts:
   show_cc: true
   donate: false
   share: true
-  comments:
+  comments: gitalk
 
 # Disqus [Disqus](https://disqus.com) 评论相关
 disqus:
@@ -115,7 +115,7 @@ aplayer:
   meting:
     server: netease
     type: playlist
-    id: 3204190542
+    id: 2580669122
   order: random
 
 # Widgets 侧边栏小挂件
