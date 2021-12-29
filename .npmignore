@@ -1,8 +1,11 @@
 # NodeJS
 node_modules/
 
-# 站点图像
-#source/images/
+# 配置文件
+_config.yml
+
+# Source Map
+source/maps/
 
 # 锁文件
 package-lock.json
@@ -16,3 +19,6 @@ _backup/
 # IDE相关配置目录
 .vscode/
 .idea/
+
+# src目录
+src/
