@@ -43,23 +43,6 @@ html {
   height: 100%;
 }
 
-@mixin selection {
-  color: #fcfcfc;
-  background: #262a30;
-}
-
-::-webkit-selection {
-  @include selection;
-}
-
-::-moz-selection {
-  @include selection;
-}
-
-::selection {
-  @include selection;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -85,7 +68,6 @@ body {
   line-height: 1.8;
   font-size: 18px;
   background: #f5f5f5;
-  color: #848484;
   font-weight: 300;
   cursor: auto;
   overflow-x: hidden;
@@ -94,7 +76,6 @@ body {
 }
 
 a {
-  color: #3e8dc5;
   text-decoration: none;
   font-weight: 400;
 
@@ -204,9 +185,8 @@ input::-moz-focus-inner {
 blockquote {
   font-size: 17.5px;
   margin: 12px 0;
-  border-left: 5px solid #080808;
+  border-left: 5px solid;
   padding: 4px 0 5px 10px;
-  background: #f1f1f1;
   border-radius: 5px;
 
   footer:before {
@@ -295,7 +275,6 @@ a {
 
 h1, h2, h3,
 h4, h5, h6 {
-  // color: #333;
   font-weight: 400;
   margin: 0 0 15px 0;
   font-family: inherit;
@@ -331,7 +310,6 @@ h {
       margin: 15px -20px;
       padding: 0 20px;
       border-left: 5px solid #51aded;
-      background-color: #f7f7f7;
       font-size: 20px;
       line-height: 40px;
       font-size: 18pt;
@@ -398,7 +376,6 @@ mark {
 p, ol, ul {
   margin: 0 0 1em 0;
   font-size: 16px;
-  color: #333
 }
 
 ol, ul {
@@ -472,7 +449,7 @@ table {
 
   th {
     color: white;
-    background: deepskyblue;
+    background: #2bda;
   }
 
   td, th {
@@ -654,8 +631,32 @@ table {
 }
 
 .alert {
-  padding: 15px;
+  padding: 1rem;
+  margin: 2rem 0;
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: row;
+
+  .icon, .text {
+    display: flex;
+  }
+
+  .icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fffc;
+    border: 1px solid;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5rem;
+  }
+
+  .text {
+    flex: 1;
+    border-left: 1px dashed;
+    flex-direction: column;
+  }
 
   ul, p {
     margin: 0 1em!important;
@@ -670,7 +671,7 @@ table {
     background-color: #cfe2ff;
     border-color: #b6d4fe;
     
-    p {
+    .icon, .text p {
       color: #084298!important;
     }
   }
@@ -679,7 +680,7 @@ table {
     background-color: #d1e7dd;
     border-color: #badbcc;
     
-    p {
+    .icon, .text p {
       color: #0f5132!important;
     }
   }
@@ -688,7 +689,7 @@ table {
     background-color: #f8d7da;
     border-color: #f5c2c7;
 
-    p {
+    .icon, .text p {
       color: #842029!important;
     }
   }
@@ -697,7 +698,7 @@ table {
     background-color: #cff4fc;
     border-color: #b6effb;
 
-    p {
+    .icon, .text p {
       color: #055160!important;
     }
   }
@@ -706,7 +707,7 @@ table {
     background-color: #fff3cd;
     border-color: #ffecb5;
     
-    p {
+    .icon, .text p {
       color: #664d03!important;
     }
   }
@@ -1003,13 +1004,12 @@ table {
   }
 }
 
-#kratos-primary-menu {
+.sf-menu {
   li {
     position: relative;
-  }
-
-  &.sf-menu li i {
-    margin-right: .5em;
+    i {
+      margin-right: .5em;
+    }
   }
 }
 
@@ -1285,7 +1285,6 @@ ul.kratos-post-meta {
     list-style: none;
     display: inline-block;
     font-size: 13px;
-    color: #777;
   
     &:not(:first-child) {
       margin-left: 12px;
@@ -1294,6 +1293,13 @@ ul.kratos-post-meta {
 
   &:not(:last-child) {
     margin-bottom: 0;
+  }
+}
+
+.kratos-breadcrumb {
+  margin: 10px 25px;
+  > a, span {
+    padding: 0 5px;
   }
 }
 
@@ -1440,6 +1446,10 @@ ul.kratos-post-meta {
   }
 }
 
+.col-md-8 {
+  width: 100%;
+}
+
 .kratos-post-content {
   word-break: break-word;
   word-wrap: break-word;
@@ -1477,7 +1487,7 @@ ul.kratos-post-meta {
   }
 
   .kratos-post-inner-toc {
-    display: none;
+    display: none!important; // So it won't be overwritten by hbe decrypt func
     border: 2px dashed #ddd;
     border-radius: 10px;
     padding-top: 15px;
@@ -1485,7 +1495,7 @@ ul.kratos-post-meta {
 
   @media(max-width:991px) {
     .kratos-post-inner-toc {
-      display: block;
+      display: block!important; // So it won't be overwritten by hbe decrypt func
     }
   }
 
@@ -1531,31 +1541,21 @@ ul.kratos-post-meta {
   }
 }
 
-.kratos-entry-thumb {
-  text-align: center;
+.kratos-entry-thumb-new {
   position: relative;
-
+  float: left;
+  width: 240px;
+  height: 145px;
+  overflow: hidden;
+  margin: 20px;
+  padding: 0;
   img {
-    height: auto;
-    max-width: 100%;
-    width: 750px
-  }
-
-  &-new {
-    position: relative;
-    float: left;
-    width: 240px;
-    height: 145px;
-    overflow: hidden;
-    margin: 20px;
-
-    img {
-      padding: 2px;
-      border: 1px solid #f3f3f3;
-      height: 145px;
-      width: 240px;
-      object-fit: cover;
-    }
+    position: absolute;
+    padding: 2px;
+    border: 1px solid #f3f3f3;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -2010,7 +2010,9 @@ ul.kratos-post-meta {
     &.widget-kratos {
   
       &-about {
-        padding: 0 !important;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
     
         .photo-background {
           -webkit-background-size: cover;
@@ -2042,6 +2044,26 @@ ul.kratos-post-meta {
           margin-bottom: 1em;
           font-size: 16px;
           margin: 20px;
+        }
+  
+        .site-meta {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+
+          > .meta-item {
+            display: flex;
+            flex-direction: column;
+            padding: .5rem 1rem;
+            border-radius: 5px;
+            &:hover {
+              background-color: #efefefaa;
+            }
+            > * {
+              display: flex;
+              justify-content: center;
+            }
+          }
         }
       }
 
@@ -2164,6 +2186,10 @@ ul.kratos-post-meta {
   }
 
   #krw-toc {
+    // Use important to prevent its style being by hbe decrypt func 
+    // (https://github.com/D0n9X1n/hexo-blog-encrypt/blob/7a820d3bd1b2d1f6aa748f870230f892fd72b330/lib/hbe.js#L213-L218)
+    display: block!important;
+
     .toc {
       padding: 0;
       overflow: auto;
@@ -2522,15 +2548,9 @@ body.scroll-down .kr-tool {
     float: none;
     width: auto;
     height: auto;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
-
+    margin: 0 0 20px 0;
+    padding: 0 0 60% 0;
     img {
-      height: auto;
-      max-width: 100%;
-      width: 750px;
       padding: 0;
       border: 0;
     }
@@ -2559,7 +2579,7 @@ body.scroll-down .kr-tool {
   }
 }
 
-@media(max-width:767px) {
+@media(max-width:768px) {
   .visible-xs {
     display: block !important;
   }
@@ -2778,7 +2798,6 @@ td.code {
 
 .post-comments {
   margin-top: 16px;
-  background-color: rgba(255, 255, 255, .8);
   padding: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .1)
 }
@@ -2826,14 +2845,9 @@ td.code {
     float: none;
     width: auto;
     height: auto;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
-
+    margin: 0 0 20px 0;
+    padding: 0 0 60% 0;
     img {
-      height: 100%;
-      width: 100%;
       padding: 0;
       border: 0
     }
@@ -2936,26 +2950,10 @@ span.mjx-chtml.MJXc-display {
   }
 }
 
-.v[data-class=v] code:not([class*=language-]) {
-  background-color: #6c6c6cc6!important;
-}
-
 /******************* Images ********************/
-.kratos-cover.kratos-cover-2 {
-  background-image: url('../images/banner.webp');
-}
-
-.widget-kratos-about .photo-background {
-  background-image: url('../images/about.webp');
-}
-
 body.custom-background {
   background-size: cover;
   background-attachment: fixed;
 }
 
-@media(min-width:768px) {
-  body.custom-background {
-    background-image: url('../images/bg.webp');
-  }
-}
+@import './kr-color/default.scss';

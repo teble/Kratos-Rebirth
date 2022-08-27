@@ -64,6 +64,25 @@ toc: true
 
 ### - Top Menu 顶部导航栏相关
 
+- *(>2.0.3)* 可以尝试更优雅的新配置方案，配置格式为：
+
+``` ts
+topMenu: Array<{
+  label: String;
+  icon?: String; // Select from FontAwesome@4.7.0
+  url?: String;
+  submenu?: Array<{
+    label: String;
+    icon?: String; // Select from FontAwesome@4.7.0
+    url: String
+  }>
+}> 
+```
+
+具体可以参见 `.demo/_config.kratos-rebirth.yml` 中示例的配置哦。
+
+{% collapse "旧的导航栏配置归档 - 已不推荐再这样使用" %}
+
 - 分为**menu**和**label**两个模块，控制页首的顶部导航栏内容。
 menu模块提供导航到的页面位置，label模块提供导航选项卡的显示内容。
 请注意menu项与label项需要一一对应，否则可能会出现无法正常显示的情况。
@@ -93,6 +112,8 @@ label:
 **额外提示：**二级菜单功能可能会和旧版本的部分函数发生冲突，如果出现意外报错的话可以考虑**检查一下是否存在更新的Hexo版本**，或者[去Github提一个Issue](https://github.com/Candinya/Kratos-Rebirth/issues)。
 目前开发使用的环境(`package.json`文件)可以参见[🎁 使用环境小贴士](https://github.com/Candinya/Kratos-Rebirth#-%E4%BD%BF%E7%94%A8%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%B4%B4%E5%A3%AB)
 
+{% endcollapse %}
+
 ### - Footer 页脚显示相关
 
 - **group_link** : 控制是否在页面右下角显示群聊的加入按钮。如果显示的话，这里可以指定加群的链接。无需显示的话请留空（而*不是*删除这个设置项），相关的代码会自行处理结构生成关系。
@@ -114,7 +135,9 @@ label:
 
 - **share** : (*true/false*)控制文章页面是否显示分享链接的按钮
 
-- **comments** : (*disqus/disqusjs/valine/twikoo/waline/gitalk/false*)会从`layout/_comments`文件夹中加载指定的评论系统，您也可以自定义其他的解决方案。如果不想开启评论的话，那就还是设置为false吧\~
+- **comments** : 
+  - **provider**: (*disqus/disqusjs/valine/twikoo/waline/gitalk/gitment/false*)会从`layout/_comments`文件夹中加载指定的评论系统，您也可以自定义其他的解决方案。如果不想开启评论的话，那就还是设置为false吧\~
+  - **enableBGImage**: (*true/false*)控制是否在评论系统中显示背景图片
 
 ### - Disqus 评论相关
 
@@ -205,10 +228,10 @@ label:
 ### - JavaScript 相关的配置
 
 - **main** : 主JavaScript配置
-  - **pic** : 无图片文章使用的随机图片相关设置
-    - **CDN** : (*jsdelivr/unpkg/false*)图片是否使用CDN来载入（如果有本地替换过图片，请设置为 false 以避免图片失效）
-    - **random_amount** : 表示图片的编号为 1 ~ 您设定的值，默认是 20 
-    - **filename** : 图片的文件名格式
+  - **cover** : 无图片文章使用的随机封面图片相关设置
+    - **randomAmount** : 表示图片的编号为 1 ~ 您设定的值，默认是 20 
+    - **baseUrl** : 图片的基础链接，例如使用本地图片则为 `/images/thumb/` （请注意您的站点路径）
+    - **coverFileNameTemplate** : 图片的文件名格式模板，默认为 `thumb_{no}.webp` ，使用时代码会将 `{no}` 替换成随机的数字编号
   - **createTime** 站点建立的时间，请改成您站点建立的时间。该项与页脚的运行时间有直接关联，建议按照样例格式进行书写，以免出现莫名其妙的报错。
   - **donateBtn** 捐助按钮上显示的文字，建议不要太长以免溢出，如果不显示捐助按钮的话就不用去管它啦\~
   - **kr.scanNotice** 二维码小窗口上的小标题，如果不显示捐助按钮的话也不用去管它啦\~
@@ -217,7 +240,7 @@ label:
   - **siteLeaveEvent** (*true/false*)是否启用站点失焦事件（只是为了卖萌，有可能会影响到历史记录，请谨慎开启）
   - **leaveTitle** 离开时候站点标题的追加内容
   - **returnTitle** 返回时候站点标题的追加内容
-  - **expire_day** 文章过期提示：距离最后更新时间多少天时，打开文件会给出提示信息
+  - **expire_day** 文章过期提示：距离最后更新时间多少天时，打开文章页面会给出提示信息。对于无标题的 Status 类默认不启用，但您可以在 Front Matter 区域内加上 `expire: true` 来手动开启。
   - **topNavScrollToggle** (*true/false*)顶部导航栏在页面向下滚动时隐藏
 
 ### - Site verify related 站点所有权验证相关
@@ -270,7 +293,7 @@ label:
 
 ``` md
 title: 文章标题
-date: 1970-01-01 00:00:00
+date: 2018-03-24 15:31:36
 categories: Demo
 tags:
 - Tag0
@@ -280,6 +303,7 @@ sticky: 100
 pic:
 comments: true
 toc: true
+expire: true
 only:
 - home
 - category
@@ -313,6 +337,8 @@ toc: true
 
 ### 提示信息
 
+{% alertbox primary "喵呼呼o(=•ェ•=)m" %}
+
 {% alertbox success "成功啦o(*￣▽￣*)ブ" %}
 
 {% alertbox danger "有危险Σ(っ °Д °;)っ" %}
@@ -322,6 +348,7 @@ toc: true
 {% alertbox warning "当心哦≧ ﹏ ≦" %}
 
 ``` md
+{% alertbox primary "喵呼呼o(=•ェ•=)m" %}
 {% alertbox success "成功啦o(*￣▽￣*)ブ" %}
 {% alertbox danger "有危险Σ(っ °Д °;)っ" %}
 {% alertbox info "有消息(・∀・(・∀・(・∀・*)" %}

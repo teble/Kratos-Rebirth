@@ -17,8 +17,6 @@ jobs:
     # Environment virables
     env:
       SITE_URL: kr-demo.candinya.com
-      AVATAR_LINK: https://ga.candinya.com/avatar/a7f9e15fef26e0a540edc977e21cb3eb
-      VALINE_APPID: cbKvgGbVMmzhOYvwuq5ULzgd-MdYXbMMI
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,7 +24,7 @@ jobs:
     # Setup Node.js env
     - uses: actions/setup-node@v2.1.2
       with:
-        node-version: '14.x'
+        node-version: '16.x'
     
     # Get Hexo test utils
     - uses: actions/checkout@v2
@@ -44,18 +42,14 @@ jobs:
     # Edit hexo site settings
     - name: Edit Hexo site settings
       run: |
-        sed -i "s/title: Hexo/title: Kratos-Rebirth/"                             "_config.yml"
-        sed -i "s/subtitle:/subtitle: A demo site of theme Kratos Rebirth/"       "_config.yml"
-        sed -i "s/description:/description: A demo site of theme Kratos Rebirth/" "_config.yml"
-        sed -i "s/author: John Doe/author: Candinya/"                             "_config.yml"
-        sed -i "s/language:/language: zh-CN/"                                     "_config.yml"
-        sed -i "s|url: http://yoursite.com|url: https://${SITE_URL}|"             "_config.yml"
-        sed -i "s|permalink: :year/:month/:day/:title/|permalink: posts/:title/|" "_config.yml"
-        sed -i "s/theme: landscape/theme: kratos-rebirth/"                        "_config.yml"
-    
-    # Copy theme settings
-    - name: Copy theme settings
-      run: cp "themes/kratos-rebirth/_config.yml.example" "themes/kratos-rebirth/_config.yml"
+        sed -i "s/title: Hexo/title: Kratos-Rebirth/"                                "_config.yml"
+        sed -i "s/subtitle: ''/subtitle: A demo site of theme Kratos Rebirth/"       "_config.yml"
+        sed -i "s/description: ''/description: A demo site of theme Kratos Rebirth/" "_config.yml"
+        sed -i "s/author: John Doe/author: Candinya/"                                "_config.yml"
+        sed -i "s/language:/language: zh-CN/"                                        "_config.yml"
+        sed -i "s|url: http://yoursite.com|url: https://${SITE_URL}|"                "_config.yml"
+        sed -i "s|permalink: :year/:month/:day/:title/|permalink: posts/:title/|"    "_config.yml"
+        sed -i "s/theme: landscape/theme: kratos-rebirth/"                           "_config.yml"
     
     # Copy document
     - name: Copy document
@@ -65,16 +59,16 @@ jobs:
     - name: Pin document
       run: |
         sed '2 isticky: 1' -i source/_posts/Kratos-Rebirth-Manual.md
+
+    # Copy extended theme settings
+    - name: Copy extended theme settings
+      run: cp "themes/kratos-rebirth/.demo/_config.kratos-rebirth.yml" "_config.kratos-rebirth.yml"
     
     # Edit theme settings
     - name: Edit theme settings
       run: |
-        sed -i "s|site_logo:|site_logo: ${AVATAR_LINK}|"                      "themes/kratos-rebirth/_config.yml"
-        sed -i "s|avatarUri: /images/avatar.webp|avatarUri: ${AVATAR_LINK}|"  "themes/kratos-rebirth/_config.yml"
-        sed -i "s|comments:|comments: valine|"                                "themes/kratos-rebirth/_config.yml"
-        sed -i "s|app_id:|app_id: ${VALINE_APPID}|"                           "themes/kratos-rebirth/_config.yml"
-        sed -i "s|app_key:|app_key: ${{ secrets.VALINE_APPKEY }}|"            "themes/kratos-rebirth/_config.yml"
-        sed -i "s|cdn: false|cdn: unpkg|"                                     "themes/kratos-rebirth/_config.yml"
+        sed -i "s|clientID: 'GitHub Application Client ID'|clientID: ${{ secrets.GH_OAUTH_ID }}|"                  "_config.kratos-rebirth.yml"
+        sed -i "s|clientSecret: 'GitHub Application Client Secret'|clientSecret: ${{ secrets.GH_OAUTH_SECRET }}|"  "_config.kratos-rebirth.yml"
     
     # Set Pages CNAME file
     - name: Set github pages CNAME file
@@ -110,7 +104,7 @@ jobs:
       run: |
         cd ./public
         git init -b gh-pages
-        git remote add origin git@github.com:${GITHUB_REPOSITORY}
+        git remote add origin git@github.com:Candinya/Kratos-Rebirth-Demo.git
         git add -A
         git commit -m "Update Demo Site at `date +'%Y-%m-%d %H:%M:%S'`"
         git push --set-upstream origin gh-pages -f

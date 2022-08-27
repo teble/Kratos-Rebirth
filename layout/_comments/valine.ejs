@@ -1,4 +1,4 @@
-<div id="v-comments" class="post-comments<% if (!theme.valine.visitor) { %> lazy-load<% } %>"></div>
+<div id="v-comments" class="post-comments<% if (!theme.valine.visitor) { %> lazy-load<% } %><% if (theme.posts.comments?.enableBGImage) { %> bg-image<% } %>"></div>
 <script>
     var load_comm = () => {
         const init = () => {
@@ -12,7 +12,7 @@
             });
         }
         if (typeof Valine === 'undefined') {
-            const src = '<%- url_npm_cdn("valine@1.4.14/dist/Valine.min.js") %>';
+            const src = '<%- url_npm_cdn("valine", "dist/Valine.min.js") %>';
             $.getScript(src, init);
         } else {
             init();
