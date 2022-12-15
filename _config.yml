@@ -1,5 +1,5 @@
 # Global 全局配置
-site_analytics: 
+site_analytics:
 hoster: <a href="https://github.io" target="_blank">Github Pages</a>
 site_logo: https://cdn.jsdelivr.net/gh/teble/teble.github.io@blog-images/img/202112031459049.png
 snow: false
@@ -10,37 +10,37 @@ check_update: true
 
 vendors:
   packages:
-    disqusjs: 
+    disqusjs:
       version: 1.2.6
-    gitalk: 
+    gitalk:
       version: 1.7.2
-    gitment: 
+    gitment:
       version: 0.0.3
-    twikoo: 
+    twikoo:
       version: 1.5.11
-    valine: 
+    valine:
       version: 1.4.18
-    "@waline/client": 
+    "@waline/client":
       version: 1.6.0
-    bootstrap: 
+    bootstrap:
       version: 3.3.4
-    nprogress: 
+    nprogress:
       version: 0.2.0
-    aplayer: 
+    aplayer:
       version: 1.10.1
-    "@fancyapps/fancybox": 
+    "@fancyapps/fancybox":
       version: 3.5.7
-    clipboard: 
+    clipboard:
       version: 2.0.6
-    layui-src: 
+    layui-src:
       version: 2.5.5
-    font-awesome: 
+    font-awesome:
       version: 4.7.0
-    jquery: 
+    jquery:
       version: 3.6.0
-    qrcode_js: 
+    qrcode_js:
       version: 1.0.0
-    mermaid: 
+    mermaid:
       version: 9.1.1
     meting:
       version: 2.0.1
@@ -53,7 +53,7 @@ customStyles:
 
 # Index 首页配置
 index:
-  post_type: false
+  post_type: true
   read_count: true
   comment_count: true
 
@@ -77,55 +77,55 @@ label:
   #   project: 项目链接
 
 # Footer 页脚配置
-group_link: 
+group_link:
 contact:
-  weibo: 
-  mail: 
+  weibo:
+  mail:
   telegram:
-  twitter: 
-  facebook: 
-  linkedin: 
+  twitter:
+  facebook:
+  linkedin:
   fediverse:
     instance: nya.one
     username: Candinya
   github: teble
   rss:
 timenotice: 本站已运行
-icp: 
+icp:
 psr:
-  
+
 # Post Page 文章页配置
 posts:
   show_cc: true
   donate: false
   share: true
-  comments: 
+  comments:
     provider: 'gitalk'
     enableBGImage: false
 
 # Disqus [Disqus](https://disqus.com) 评论相关
 disqus:
-  shortname: 
+  shortname:
 
 # DisqusJS [DisqusJS](https://disqusjs.skk.moe/) 评论相关
 disqusjs:
-  shortname: 
-  sitename: 
-  api: 
-  apikey: 
-  admin: 
-  adminlabel: 
+  shortname:
+  sitename:
+  api:
+  apikey:
+  admin:
+  adminlabel:
 
 # Valine [Valine](https://valine.js.org) 评论相关
 valine:
-  app_id: 
-  app_key: 
+  app_id:
+  app_key:
   visitor: true
   enableQQ: false
 
 # Twikoo [Twikoo](https://twikoo.js.org) 评论相关
 twikoo:
-  env_id: 
+  env_id:
 
 # Waline [Waline](https://waline.js.org) 评论相关
 ## 不仅限于以下内容，您可以参照 Waline的 [前端配置文档](https://waline.js.org/reference/client.html) 设置您需要的配置项
@@ -142,7 +142,7 @@ gitalk:
   clientSecret: '66e214dd4d229c9ed71b2b469423c683f7099410'
   repo: 'teble.github.io'
   owner: 'teble'
-  admin: 
+  admin:
     - 'teble'
   distractionFreeMode: false
 
@@ -163,7 +163,7 @@ livere:
 # APlayer 左下角音乐播放器
 aplayer:
   enabled: true
-  playlist: 
+  playlist:
   meting:
     server: netease
     type: playlist
@@ -173,14 +173,14 @@ aplayer:
 # Widgets 侧边栏小挂件
 sidebar: right
 widgets:
-- about
-- splitter
-- toc
-- category
-- tagcloud
-- posts
+  - about
+  - splitter
+  - toc
+  - category
+  - tagcloud
+  - posts
 avatarUri: https://cdn.jsdelivr.net/gh/teble/teble.github.io@blog-images/img/20211202173817.png
-mobile_toc: 
+mobile_toc:
   hide: false
   hide_id: false
 
@@ -202,7 +202,7 @@ jsconfig:
       randomAmount: 20 # 表示从1~20
       baseUrl: "https://cdn.jsdelivr.net/npm/hexo-theme-kratos-rebirth@latest/source/images/thumb/" # 使用默认值（不单独配置），将跟随 vendors 中的相关设定选择是否使用 cdn
       filenameTemplate: "thumb_{no}.webp"  # 相对于主题根目录，表示文件名的格式, {no} 用以指代随机的编号。
-                                              # 如果包含 // 表示使用指定域名的绝对路径（例如第三方图床服务等），那么会忽略 CDN 选项
+      # 如果包含 // 表示使用指定域名的绝对路径（例如第三方图床服务等），那么会忽略 CDN 选项
     createTime: "2019/12/02 15:28:51"
     donateBtn: "支持我~"
     scanNotice: "扫一扫，好不好？"
@@ -217,9 +217,9 @@ jsconfig:
 
 # Site verify 站点验证相关配置内容
 site_verify:
-  google: 
-  baidu: 
-  bing: 
+  google:
+  baidu:
+  bing:
 
 # Friends 友链相关内容
 friends:
@@ -230,12 +230,22 @@ friends:
     description: "好伙伴们在哪里~"
     updated: "2021-01-18"
   list:
-  - name: "夏妄的撸猫时光"
-    bio: "喵~"
-    avatar: https://ae01.alicdn.com/kf/H47159a0af3b744609ab0eaa3e14f5070E.png
-    link: https://www.warmsu.com/
-  - name: "若羽。"
-    bio: "喵喵~"
-    avatar: "../images/avatar.webp"
-    link: https://www.cnblogs.com/By-ruoyu/
+    # - name: "夏妄的撸猫时光"
+    #   bio: "喵~"
+    #   avatar: https://ae01.alicdn.com/kf/H47159a0af3b744609ab0eaa3e14f5070E.png
+    #   link: https://www.warmsu.com/
+    - name: "若羽。"
+      bio: "喵喵~"
+      avatar: "../images/avatar.webp"
+      link: https://www.cnblogs.com/By-ruoyu/
+    - name: "Ketal和狐狸的小窝"
+      bio: "喵喵喵？"
+      avatar: "https://avatars.githubusercontent.com/u/41381927?v=4"
+      link: https://blog.ketal.icu/
+    - name: Nullptr's Blog
+      link: https://nullptr.icu/
+      avatar: https://avatars.githubusercontent.com/u/52071314
+    - name: Jasmine Blog
+      link: https://blog.dianas.cyou
+      avatar: https://blog.dianas.cyou/img/favicon.png
   verify: true # 验证每个友链的可访问性，炸了会有提示
