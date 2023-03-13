@@ -20,9 +20,9 @@ vendors:
       version: 1.5.11
     valine:
       version: 1.4.18
-    "@waline/client":
-      version: 1.6.0
-    bootstrap:
+    "@waline/client": 
+      version: 2.14.1
+    bootstrap: 
       version: 3.3.4
     nprogress:
       version: 0.2.0
@@ -30,8 +30,6 @@ vendors:
       version: 1.10.1
     "@fancyapps/fancybox":
       version: 3.5.7
-    clipboard:
-      version: 2.0.6
     layui-src:
       version: 2.5.5
     font-awesome:
@@ -48,8 +46,8 @@ vendors:
 # 自定义样式
 customStyles:
   images: # 图片相关设置
-    banner: /images/banner.webp # 站点横幅
-    background: /images/bg.webp # 站点背景
+    # banner: /images/banner.webp # 站点横幅
+    # background: /images/bg.webp # 站点背景
 
 # Index 首页配置
 index:
@@ -78,7 +76,7 @@ label:
 
 # Footer 页脚配置
 group_link:
-contact:
+contact: # 出于兼容性考虑，继续保留
   weibo:
   mail:
   telegram:
@@ -86,10 +84,11 @@ contact:
   facebook:
   linkedin:
   fediverse:
-    instance: nya.one
-    username: Candinya
+    instance:
+    username:
   github: teble
   rss:
+footerLinks: [] # 可以自定义
 timenotice: 本站已运行
 icp:
 psr:
@@ -102,6 +101,9 @@ posts:
   comments:
     provider: 'gitalk'
     enableBGImage: false
+  wordCount:
+    enable: true
+    threshold: 1500
 
 # Disqus [Disqus](https://disqus.com) 评论相关
 disqus:
@@ -132,7 +134,8 @@ twikoo:
 ## el 和 path 会在页面自动生成，不必加入
 waline:
   serverURL: #后端服务器地址，必填
-  visitor: true
+  comment: true
+  pageview: true
 
 # Gitalk [Gitalk](https://gitalk.github.io/) 评论相关
 ## 不仅限于以下内容，您可以参照 [Gitalk 文档](https://github.com/gitalk/gitalk/blob/master/readme-cn.md#%E8%AE%BE%E7%BD%AE) 设置您需要的配置项
@@ -249,3 +252,7 @@ friends:
       link: https://blog.dianas.cyou
       avatar: https://blog.dianas.cyou/img/favicon.png
   verify: true # 验证每个友链的可访问性，炸了会有提示
+
+# Misc 杂项
+misc:
+  showWordCountEstimateWavy: true # 在文章字数处显示表示大约字数的波浪号
