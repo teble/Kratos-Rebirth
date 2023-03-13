@@ -1,11 +1,12 @@
 <%- css_npm_cdn('gitalk', 'dist/gitalk.css') %>
 <div id="gitalk-container" class="post-comments lazy-load<% if (theme.posts.comments?.enableBGImage) { %> bg-image<% } %>" style="padding-left:2rem; padding-right:2rem;"></div>
+<script src="/js/md5.min.js"></script>
 <script>
     var load_comm = () => {
         const init = () => {
             console.log('Gitalk loading...');
             const gitalk = new Gitalk(Object.assign({
-                id: '<%- url_for(page.path) %>',
+                id: md5('<%- url_for(page.path) %>'),
                 path: '<%- url_for(page.path) %>'
             }, JSON.parse('<%- JSON.stringify(theme.gitalk) %>')));
 

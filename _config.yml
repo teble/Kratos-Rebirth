@@ -202,8 +202,8 @@ search:
 jsconfig:
   main:
     cover:
-      randomAmount: 20 # 表示从1~20
-      baseUrl: "https://cdn.jsdelivr.net/npm/hexo-theme-kratos-rebirth@latest/source/images/thumb/" # 使用默认值（不单独配置），将跟随 vendors 中的相关设定选择是否使用 cdn
+      randomAmount: 1 # 表示从1~20
+      baseUrl: "/images/thumb/" # 使用默认值（不单独配置），将跟随 vendors 中的相关设定选择是否使用 cdn
       filenameTemplate: "thumb_{no}.webp"  # 相对于主题根目录，表示文件名的格式, {no} 用以指代随机的编号。
       # 如果包含 // 表示使用指定域名的绝对路径（例如第三方图床服务等），那么会忽略 CDN 选项
     createTime: "2019/12/02 15:28:51"
